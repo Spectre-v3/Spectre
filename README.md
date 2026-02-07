@@ -7,20 +7,20 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104-teal)](https://fastapi.tiangolo.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## 📋 Descripción
+## Descripción
 
 **Spectre** es un sistema completo que permite realizar transacciones "invisibles" en blockchain, ocultando información sensible (dirección destino y monto) mediante hashing criptográfico con salt. El sistema integra con Uniswap v4 para proporcionar liquidez y privacidad adicional.
 
-### 🎯 Características Principales
+### Características Principales
 
-- **🔒 Privacidad Total**: Hash SHA-256 con salt único para ocultar destino y monto
-- **⚡ Verificación On-Chain**: Smart contracts validan sin revelar datos
-- **🦄 Integración Uniswap v4**: Hooks personalizados para operaciones privadas
-- **💻 Interfaz Intuitiva**: Frontend completo con Web3/MetaMask
-- **🐍 Backend Robusto**: FastAPI con gestión segura de hashes
-- **📊 Base de Datos**: SQLite para persistencia de transacciones
+- **Privacidad Total**: Hash SHA-256 con salt único para ocultar destino y monto
+- **Verificación On-Chain**: Smart contracts validan sin revelar datos
+- **Integración Uniswap v4**: Hooks personalizados para operaciones privadas
+- **Interfaz Intuitiva**: Frontend completo con Web3/MetaMask
+- **Backend Robusto**: FastAPI con gestión segura de hashes
+- **Base de Datos**: SQLite para persistencia de transacciones
 
-## 🏗️ Arquitectura del Sistema
+## Arquitectura del Sistema
 
 ```
 ┌─────────────────┐
@@ -61,7 +61,7 @@
    - `UniswapV4Hook.sol`: Hook de Uniswap v4
    - `TokenWrapper.sol`: Gestión de tokens
 
-## 🚀 Instalación Rápida
+## Instalación Rápida
 
 ### Prerrequisitos
 
@@ -121,7 +121,7 @@ forge script scripts/Deploy.s.sol:DeployInvisibleTransfer \
   --broadcast --verify
 ```
 
-**⚠️ Importante**: Guarda la dirección del contrato desplegado y actualízala en:
+**Importante**: Guarda la dirección del contrato desplegado y actualízala en:
 - `frontend/app.js` → variable `INVISIBLE_TRANSFER_CONTRACT`
 - `backend/.env` → variable `INVISIBLE_TRANSFER_ADDRESS`
 
@@ -140,7 +140,7 @@ python -m http.server 8080
 
 Abrir navegador en `http://localhost:8080`
 
-## 📖 Guía de Uso
+## Guía de Uso
 
 ### 1. Conectar Wallet
 
@@ -151,12 +151,12 @@ Abrir navegador en `http://localhost:8080`
 
 ### 2. Enviar Transacción Invisible
 
-1. Ir a pestaña "📤 Enviar"
+1. Ir a pestaña "Enviar"
 2. Ingresar:
    - Dirección destinatario (0x...)
    - Cantidad de tokens
    - Seleccionar token (USDC, USDT, DAI, WETH)
-3. Clic en "🔒 Crear Transacción Invisible"
+3. Clic en "Crear Transacción Invisible"
 4. Aprobar en MetaMask:
    - Primera tx: Aprobar tokens
    - Segunda tx: Publicar transacción invisible
@@ -164,14 +164,14 @@ Abrir navegador en `http://localhost:8080`
 
 ### 3. Reclamar Transacción
 
-1. Ir a pestaña "📥 Recibir"
-2. Clic en "🔄 Actualizar" para ver transacciones pendientes
+1. Ir a pestaña "Recibir"
+2. Clic en "Actualizar" para ver transacciones pendientes
 3. Si hay transacciones para ti, aparecerán listadas
-4. Clic en "💰 Reclamar"
+4. Clic en "Reclamar"
 5. Aprobar en MetaMask
 6. Los tokens se transferirán a tu wallet
 
-## 🔐 Flujo Técnico Detallado
+## Flujo Técnico Detallado
 
 ### Publicar Transacción Invisible
 
@@ -259,7 +259,7 @@ pip install pytest pytest-asyncio
 pytest tests/ -v
 ```
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 Spectre/
@@ -290,7 +290,7 @@ Spectre/
     └── .gitignore
 ```
 
-## 🔧 Configuración Avanzada
+## Configuración Avanzada
 
 ### Variables de Entorno Backend
 
@@ -323,11 +323,11 @@ const TOKEN_ADDRESSES = {
 };
 ```
 
-## 🛡️ Seguridad
+## Seguridad
 
 ### Consideraciones Importantes
 
-⚠️ **Este proyecto es para fines educativos en testnet**
+**Este proyecto es para fines educativos en testnet**
 
 Para producción:
 
@@ -351,7 +351,7 @@ Para producción:
 - Rate limiting no implementado
 - Frontend expone todas las configuraciones
 
-## 🤝 Contribuir
+## Contribuir
 
 ¡Las contribuciones son bienvenidas!
 
@@ -361,7 +361,7 @@ Para producción:
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
-## 📚 Recursos
+## Recursos
 
 - [Documentación Uniswap v4](https://docs.uniswap.org/contracts/v4/overview)
 - [FastAPI Docs](https://fastapi.tiangolo.com/)
@@ -369,7 +369,7 @@ Para producción:
 - [Foundry Book](https://book.getfoundry.sh/)
 - [Solidity Docs](https://docs.soliditylang.org/)
 
-## 📝 Roadmap
+## Roadmap
 
 - [x] Sistema básico de transacciones invisibles
 - [x] Integración con MetaMask
@@ -382,24 +382,19 @@ Para producción:
 - [ ] Integración con wallets adicionales
 - [ ] Dashboard de analytics
 
-## 👥 Autores
+## Autores
 
 - **Spectre Team** - [GitHub](https://github.com/Spectre-v3)
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 **SOLO PARA FINES EDUCATIVOS Y TESTNET**
 
 Este software se proporciona "tal cual", sin garantía de ningún tipo. No use en producción sin auditoría profesional. Los autores no son responsables por pérdidas o daños.
 
----
 
-<p align="center">
-  Hecho con ❤️ para la comunidad blockchain
-  <br>
-  <strong>👻 Spectre - Privacy Matters</strong>
-</p>
+---
