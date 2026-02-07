@@ -1,13 +1,13 @@
-# 🚀 Inicio Rápido - Spectre
+# Inicio Rápido - Spectre
 
-## ⏱️ Setup en 5 Minutos
+## Setup en 5 Minutos
 
 ### 1. Prerequisitos
 Asegúrate de tener instalado:
-- ✅ Python 3.10+
-- ✅ Node.js 18+
-- ✅ Git
-- ✅ MetaMask en tu navegador
+- Python 3.10+
+- Node.js 18+
+- Git
+- MetaMask en tu navegador
 
 ### 2. Clonar e Instalar
 
@@ -102,7 +102,7 @@ python -m http.server 8080
 
 ---
 
-## 🎯 Primera Transacción de Prueba
+## Primera Transacción de Prueba
 
 ### Enviar Tokens (Alice → Bob)
 
@@ -111,7 +111,7 @@ python -m http.server 8080
    - Aprobar en MetaMask
 
 2. **Crear Transacción Invisible**
-   - Ir a tab "📤 Enviar"
+   - Ir a tab "Enviar"
    - Ingresar dirección de Bob
    - Cantidad: 10
    - Token: USDC
@@ -133,12 +133,12 @@ python -m http.server 8080
    - Conectar wallet
 
 2. **Ver Pendientes**
-   - Ir a tab "📥 Recibir"
-   - Clic en "🔄 Actualizar"
+   - Ir a tab "Recibir"
+   - Clic en "Actualizar"
    - Deberías ver la transacción de Alice
 
 3. **Reclamar**
-   - Clic en "💰 Reclamar"
+   - Clic en "Reclamar"
    - Aprobar en MetaMask
    - ¡Tokens recibidos!
 
