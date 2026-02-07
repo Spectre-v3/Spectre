@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spectre - Transacciones Invisibles</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>👻 Spectre</h1>
+                <p class="tagline">Transacciones Invisibles en Blockchain</p>
+            </div>
+            <div class="wallet-section">
+                <button id="connectWalletBtn" class="btn btn-primary">
+                    🦊 Conectar Wallet
+                </button>
+                <div id="walletInfo" class="wallet-info hidden">
+                    <span id="walletAddress" class="wallet-address"></span>
+                    <span id="walletBalance" class="wallet-balance"></span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Statistics Dashboard -->
+            <section class="stats-section">
+                <div class="stat-card">
+                    <h3>Total Enviado</h3>
+                    <p id="totalSent" class="stat-value">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Recibido</h3>
+                    <p id="totalReceived" class="stat-value">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Pendientes</h3>
+                    <p id="totalPending" class="stat-value">0</p>
+                </div>
+            </section>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="send">
+                    📤 Enviar
+                </button>
+                <button class="tab-btn" data-tab="receive">
+                    📥 Recibir
+                </button>
+                <button class="tab-btn" data-tab="history">
+                    📋 Historial
+                </button>
+            </div>
+
+            <!-- Send Tab -->
+            <section id="sendTab" class="tab-content active">
+                <div class="card">
+                    <h2>Crear Transacción Invisible</h2>
+                    <form id="sendForm" class="form">
+                        <div class="form-group">
+                            <label for="recipientAddress">Dirección Destinatario</label>
+                            <input 
+                                type="text" 
+                                id="recipientAddress" 
+                                placeholder="0x..."
+                                required
+                                pattern="^0x[a-fA-F0-9]{40}$"
+                            >
+                            <small class="form-hint">Dirección Ethereum válida</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="amount">Cantidad</label>
+                            <input 
+                                type="number" 
+                                id="amount" 
+                                placeholder="0.00"
+                                step="0.000001"
+                                min="0"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tokenSelect">Token</label>
+                            <select id="tokenSelect" required>
+                                <option value="">Seleccionar token...</option>
+                                <option value="USDC">USDC</option>
+                                <option value="USDT">USDT</option>
+                                <option value="DAI">DAI</option>
+                                <option value="WETH">WETH</option>
+                            </select>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-large btn-primary">
+                                🔒 Crear Transacción Invisible
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Transaction Result -->
+                    <div id="transactionResult" class="transaction-result hidden">
+                        <div class="success-message">
+                            <h3>✅ Transacción Creada</h3>
+                            <div class="hash-display">
+                                <label>Hash:</label>
+                                <code id="resultHash"></code>
+                                <button class="btn-copy" onclick="copyHash()">📋</button>
+                            </div>
+                            <p class="result-info">
+                                La transacción ha sido publicada en blockchain. 
+                                El destinatario podrá reclamarla en la pestaña "Recibir".
+                            </p>
+                            <a id="explorerLink" href="#" target="_blank" class="btn btn-secondary">
+                                Ver en Explorer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Receive Tab -->
+            <section id="receiveTab" class="tab-content">
+                <div class="card">
+                    <h2>Transacciones Pendientes</h2>
+                    <p class="section-description">
+                        Estas son las transacciones invisibles que puedes reclamar
+                    </p>
+
+                    <button id="refreshPendingBtn" class="btn btn-secondary">
+                        🔄 Actualizar
+                    </button>
+
+                    <div id="pendingTransactions" class="transactions-list">
+                        <!-- Se llenará dinámicamente -->
+                        <div class="empty-state">
+                            <p>No hay transacciones pendientes</p>
+                            <small>Las transacciones aparecerán aquí cuando alguien te envíe fondos</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Tab -->
+            <section id="historyTab" class="tab-content">
+                <div class="card">
+                    <h2>Historial de Transacciones</h2>
+                    
+                    <div class="history-filters">
+                        <button class="filter-btn active" data-filter="all">Todas</button>
+                        <button class="filter-btn" data-filter="sent">Enviadas</button>
+                        <button class="filter-btn" data-filter="received">Recibidas</button>
+                    </div>
+
+                    <div id="transactionHistory" class="transactions-list">
+                        <!-- Se llenará dinámicamente -->
+                        <div class="empty-state">
+                            <p>No hay transacciones en el historial</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by Uniswap v4 • Built with ❤️ for privacy</p>
+            <p class="warning">⚠️ Testnet Only - Educational Purposes</p>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="spinner"></div>
+        <p id="loadingText">Procesando...</p>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js"></script>
+    <script src="wallet.js"></script>
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
